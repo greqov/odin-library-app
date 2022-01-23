@@ -26,10 +26,15 @@ footer {
 table {
   table-layout: fixed;
   border-collapse: collapse;
+  width: 100%;
 }
 
 th,
 td {
   padding: 5px 10px;
   border: 1px solid white;
+}
+
+.td-message {
+  text-align: center;
 }
