@@ -8,7 +8,9 @@
       .substring(1);
   const generateId = () => `${s4()}-${s4()}-${s4()}`;
 
-  let myLibrary = [
+  let myLibrary = [];
+
+  const defaultBooks = [
     {
       id: generateId(),
       title: 'Anthem (Barnes & Noble Book Club Edition)',
@@ -44,11 +46,15 @@
     this.read = !this.read;
   };
 
-  function addBookToLibrary(book) {
-    // do stuff here
-
+  function addBookToLibrary(title, author, pages, read) {
+    const book = new Book(title, author, pages, read);
     myLibrary.push(book);
   }
+
+  defaultBooks.forEach((book) => {
+    const { title, author, pages, read } = book;
+    addBookToLibrary(title, author, pages, read);
+  });
 
   const booksTable = document.querySelector('.books-table');
 
@@ -83,7 +89,7 @@
   }
 
   function toggleRead(id) {
-    console.log('Im a toggle read fn', id);
+    myLibrary.filter((book) => book.id === id).forEach((book) => book.toggleRead());
   }
 
   function removeBook(id) {
