@@ -18,6 +18,11 @@ a {
   color: skyblue;
 }
 
+footer {
+  padding: 60px 0 24px;
+  text-align: center;
+}
+
 table {
   table-layout: fixed;
   border-collapse: collapse;
