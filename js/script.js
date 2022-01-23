@@ -89,7 +89,14 @@
   }
 
   function toggleRead(id) {
-    myLibrary.filter((book) => book.id === id).forEach((book) => book.toggleRead());
+    myLibrary
+      .filter((book) => book.id === id)
+      .forEach((book) => {
+        book.toggleRead();
+        booksTableBody
+          .querySelector(`[data-id="${id}"]`)
+          .querySelector('td:nth-child(4)').textContent = book.read;
+      });
   }
 
   function removeBook(id) {
