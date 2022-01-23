@@ -57,6 +57,9 @@
   });
 
   const booksTable = document.querySelector('.books-table');
+  const booksTableBody = booksTable.querySelector('tbody');
+
+  const noBooksTr = `<tr><td class="td-message" colspan="5">No books</td></tr>`;
 
   function displayBooks() {
     let rows = '';
@@ -79,13 +82,10 @@
       });
     } else {
       // TODO: remove message row on adding new book
-      rows += `
-      <tr>
-        <td class="td-message" colspan="5">No books</td>
-      </tr>`;
+      rows += noBooksTr;
     }
 
-    booksTable.querySelector('tbody').innerHTML = rows;
+    booksTableBody.innerHTML = rows;
   }
 
   function toggleRead(id) {
@@ -93,8 +93,12 @@
   }
 
   function removeBook(id) {
-    // TODO: better remove only one row I guess
     myLibrary = myLibrary.filter((book) => book.id !== id);
+    if (booksTableBody.querySelectorAll('tr').length > 1) {
+      booksTable.querySelector(`[data-id="${id}"]`).remove();
+    } else {
+      booksTableBody.innerHTML = noBooksTr;
+    }
   }
 
   // add event listeners
@@ -111,8 +115,6 @@
       } else {
         removeBook(id);
       }
-
-      displayBooks();
     }
   });
 
