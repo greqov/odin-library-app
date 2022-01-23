@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #333;
+  color: #eee;
+  font-family: monospace;
+}
+
+body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+a {
+  color: skyblue;
+}
