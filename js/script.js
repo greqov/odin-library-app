@@ -8,6 +8,10 @@
       .substring(1);
   const generateId = () => `${s4()}-${s4()}-${s4()}`;
 
+  const booksTable = document.querySelector('.books-table');
+  const booksTableBody = booksTable.querySelector('tbody');
+  const noBooksTr = `<tr><td class="td-message" colspan="5">No books</td></tr>`;
+
   let myLibrary = [];
 
   const defaultBooks = [
@@ -46,9 +50,30 @@
     this.read = !this.read;
   };
 
+  function createBookRow(book) {
+    const { id, title, author, pages, read } = book;
+    return `
+    <tr data-id="${id}">
+      <td>${title}</td>
+      <td>${author}</td>
+      <td>${pages}</td>
+      <td>${read}</td>
+      <td>
+        <button class="js-btn js-toggle-read" type="button">Toggle</button>
+        <button class="js-btn js-remove-book" type="button">Remove</button>
+      </td>
+    </tr>
+    `;
+  }
+
   function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
+    // NOTE: I don't like mix of logic and updating UI
+    const newR = createBookRow(book);
+    booksTableBody.innerHTML += newR;
+    const tdMessage = document.querySelector('.td-message');
+    if (tdMessage) tdMessage.parentNode.remove();
   }
 
   defaultBooks.forEach((book) => {
@@ -56,32 +81,14 @@
     addBookToLibrary(title, author, pages, read);
   });
 
-  const booksTable = document.querySelector('.books-table');
-  const booksTableBody = booksTable.querySelector('tbody');
-
-  const noBooksTr = `<tr><td class="td-message" colspan="5">No books</td></tr>`;
-
   function displayBooks() {
     let rows = '';
     if (myLibrary.length) {
       myLibrary.forEach((book) => {
-        const { id, title, author, pages, read } = book;
-        const bookRow = `
-        <tr data-id="${id}">
-          <td>${title}</td>
-          <td>${author}</td>
-          <td>${pages}</td>
-          <td>${read}</td>
-          <td>
-            <button class="js-btn js-toggle-read" type="button">Toggle</button>
-            <button class="js-btn js-remove-book" type="button">Remove</button>
-          </td>
-        </tr>
-        `;
+        const bookRow = createBookRow(book);
         rows += bookRow;
       });
     } else {
-      // TODO: remove message row on adding new book
       rows += noBooksTr;
     }
 
@@ -150,8 +157,6 @@
 
     if (title && author && pages) {
       addBookToLibrary(title, author, pages, read);
-      console.log({ myLibrary });
-      // TODO: add row in a table
       newBookForm.reset();
       newBookForm.classList.remove('is-visible');
     } else {
