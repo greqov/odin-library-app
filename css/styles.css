@@ -38,3 +38,49 @@ td {
 .td-message {
   text-align: center;
 }
+
+.books-table {
+  margin-top: 24px;
+}
+
+.new-book-form {
+  display: none;
+  margin-top: 24px;
+}
+
+.new-book-form.is-visible {
+  display: block;
+}
+
+.form-fields-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr 60px 50px;
+  gap: 15px;
+}
+
+.form-field {
+  margin-bottom: 15px;
+}
+
+.form-field label {
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.form-field input {
+  display: block;
+  width: 100%;
+}
+
+.form-field input[type="checkbox"] {
+  position: relative;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.form-actions {
+  text-align: right;
+}

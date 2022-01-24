@@ -125,6 +125,40 @@
     }
   });
 
+  const newBookBtn = document.querySelector('.js-new-book');
+  const newBookForm = document.querySelector('.js-new-book-form');
+  newBookBtn.addEventListener('click', () => {
+    newBookForm.classList.add('is-visible');
+  });
+
+  const newBookCancelBtn = document.querySelector('.js-new-book-cancel');
+  newBookCancelBtn.addEventListener('click', () => {
+    newBookForm.classList.remove('is-visible');
+  });
+
+  const newBookSubmitBtn = document.querySelector('.js-new-book-submit');
+  const titleField = document.querySelector('[name="new-book-title"]');
+  const authorField = document.querySelector('[name="new-book-author"]');
+  const pagesField = document.querySelector('[name="new-book-pages"]');
+  const readField = document.querySelector('[name="new-book-read"]');
+  newBookSubmitBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const title = titleField.value;
+    const author = authorField.value;
+    const pages = pagesField.value;
+    const read = readField.checked;
+
+    if (title && author && pages) {
+      addBookToLibrary(title, author, pages, read);
+      console.log({ myLibrary });
+      // TODO: add row in a table
+      newBookForm.reset();
+      newBookForm.classList.remove('is-visible');
+    } else {
+      console.log('Please fill all fields');
+    }
+  });
+
   // init actions
   displayBooks();
 })();

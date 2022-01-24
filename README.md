@@ -4,7 +4,7 @@
 - Live preview: [Github pages](https://greqov.github.io/odin-library-app/)
 
 ## TODO:
-- [] add fn to get user input (title, author, pages, read)
+- [x] add fn to get user input (title, author, pages, read)
 - [x] markup basic html
 - [x] output all books into DOM
 - [] add 'New book' button

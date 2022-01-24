@@ -10,6 +10,34 @@
   <body>
     <h1>TOP Library App!</h1>
 
+    <button class="js-new-book" type="button">New book</button>
+
+    <form class="new-book-form js-new-book-form" action="">
+      <div class="form-fields-area">
+        <div class="form-field">
+          <label for="new-book-title">Title</label>
+          <input type="text" id="new-book-title" name="new-book-title" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="new-book-author">Author</label>
+          <input type="text" id="new-book-author" name="new-book-author" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="new-book-pages">Pages</label>
+          <input type="number" id="new-book-pages" name="new-book-pages" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="new-book-read">Read</label>
+          <input type="checkbox" id="new-book-read" name="new-book-read">
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="js-new-book-cancel" type="button">Cancel</button>
+        <button class="js-new-book-submit" type="submit">Add book</button>
+      </div>
+    </form>
+
     <table class="books-table">
       <thead>
         <tr>
