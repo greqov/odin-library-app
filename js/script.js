@@ -38,17 +38,19 @@
     },
   ];
 
-  function Book(title, author, pages, read) {
-    this.id = generateId();
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-  }
+  class Book {
+    constructor(title, author, pages, read) {
+      this.id = generateId();
+      this.title = title;
+      this.author = author;
+      this.pages = pages;
+      this.read = read;
+    }
 
-  Book.prototype.toggleRead = function () {
-    this.read = !this.read;
-  };
+    toggleRead() {
+      this.read = !this.read;
+    }
+  }
 
   function createBookRow(book) {
     const { id, title, author, pages, read } = book;
